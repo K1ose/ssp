@@ -1,0 +1,48 @@
+# 通用
+.DS_Store
+Thumbs.db
+*.log
+*.out
+*.err
+*.swp
+*.swo
+*~
+*.pid
+*.sock
+
+# Python (backend)
+venv/
+__pycache__/
+*.py[cod]
+*.so
+*.pyo
+*.pyd
+*.whl
+*.egg-info/
+.eggs/
+.Python
+.coverage
+.tox/
+.nox/
+pytest_cache/
+.cache/
+*.db
+*.sqlite3
+.env
+.env.*
+
+# Node.js (frontend)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+
+# Docker
+docker-compose.override.yml
+.dockerignore
+build/
+
+# Temporary files
+tmp/
+

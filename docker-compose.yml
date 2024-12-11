@@ -1,0 +1,54 @@
+# Multi-container service configuration
+
+version: "3.8"
+services:
+    
+  # FastAPI
+  backend:
+    build:
+      context: ./backend
+    volumes:
+      - ./backend:/app  # 挂载本地代码到容器内
+    ports:
+      - "8000:8000"
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload  # 热重载模式
+    networks:
+      - app-network
+    depends_on:
+      - db
+      - redis
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/dbase
+      - REDIS_URL=redis://redis:6379
+
+  # redis 
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+
+  db:
+    image: postgres:latest
+    container_name: postgres-1
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: dbase
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # 挂载 SQL 文件
+    networks:
+      - app-network
+      
+volumes:
+  pg_data:
+
+networks:
+  app-network:
+    driver: bridge
+
+

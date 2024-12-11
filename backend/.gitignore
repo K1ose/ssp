@@ -1,0 +1,33 @@
+# Python compiled files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Virtual environment
+venv/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.cache
+
+# Database and sensitive files
+*.sqlite3
+.env
+
+# Build and distribution
+build/
+dist/
+*.egg-info/
+
+# Test coverage reports
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Editor and OS-specific files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
